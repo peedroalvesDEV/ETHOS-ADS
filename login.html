@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Athos Ads - Login na Plataforma de Marketing Digital Inteligente">
+    <title>Athos Ads - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- Facebook SDK -->
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/pt_BR/sdk.js"></script>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="login-bg">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Login Container -->
+    <div class="login-wrapper">
+        <!-- Left Side - Branding -->
+        <div class="login-branding">
+            <div class="brand-content">
+                <div class="brand-logo">
+                    <div class="brand-logo-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <span class="brand-logo-text">Athos Ads</span>
+                </div>
+                <h1 class="brand-headline">Marketing Digital <span class="gradient-text">Inteligente</span></h1>
+                <p class="brand-description">Gerencie campanhas, automatize processos com IA e escale seus resultados
+                    com a plataforma mais completa do mercado.</p>
+
+                <div class="brand-features">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="feature-text">
+                            <strong>Dashboard Completo</strong>
+                            <span>Métricas em tempo real</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                        <div class="feature-text">
+                            <strong>Automações com IA</strong>
+                            <span>Copy, imagens e chatbots</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-plug"></i></div>
+                        <div class="feature-text">
+                            <strong>Multi-Plataforma</strong>
+                            <span>Instagram, Facebook, Google</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="brand-stats">
+                    <div class="stat">
+                        <span class="stat-value" id="statUsers">2.500+</span>
+                        <span class="stat-label">Usuários Ativos</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-value" id="statCampaigns">15k+</span>
+                        <span class="stat-label">Campanhas Criadas</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-value" id="statROI">287%</span>
+                        <span class="stat-label">ROI Médio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Login Form -->
+        <div class="login-form-side">
+            <div class="login-card" id="loginCard">
+                <!-- Login State -->
+                <div class="login-state" id="loginState">
+                    <div class="login-card-header">
+                        <h2>Bem-vindo de volta</h2>
+                        <p>Faça login para acessar sua conta</p>
+                    </div>
+
+                    <!-- Social Login Buttons -->
+                    <div class="social-login-group">
+                        <button class="social-btn google-btn" id="googleLoginBtn" onclick="loginWithGoogle()">
+                            <svg class="social-icon" viewBox="0 0 24 24" width="20" height="20">
+                                <path fill="#4285F4"
+                                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" />
+                                <path fill="#34A853"
+                                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                                <path fill="#FBBC05"
+                                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                                <path fill="#EA4335"
+                                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                            </svg>
+                            <span>Continuar com Google</span>
+                        </button>
+
+                        <button class="social-btn facebook-btn" id="facebookLoginBtn" onclick="loginWithFacebook()">
+                            <i class="fab fa-facebook-f social-icon-fa"></i>
+                            <span>Continuar com Facebook</span>
+                        </button>
+
+                        <div class="social-row">
+                            <button class="social-btn social-btn-compact apple-btn" onclick="loginWithApple()">
+                                <i class="fab fa-apple social-icon-fa"></i>
+                                <span>Apple</span>
+                            </button>
+                            <button class="social-btn social-btn-compact github-btn" onclick="loginWithGithub()">
+                                <i class="fab fa-github social-icon-fa"></i>
+                                <span>GitHub</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="divider">
+                        <span>ou entre com email</span>
+                    </div>
+
+                    <!-- Email/Password Form -->
+                    <form class="login-form" id="loginForm" onsubmit="handleEmailLogin(event)">
+                        <div class="input-group">
+                            <label for="loginEmail">Email</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="loginEmail" placeholder="seu@email.com" required
+                                    autocomplete="email">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="loginPassword">Senha</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="loginPassword" placeholder="••••••••" required
+                                    autocomplete="current-password">
+                                <button type="button" class="toggle-password" onclick="togglePasswordVisibility(this)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-wrapper" for="rememberMe">
+                                <input type="checkbox" id="rememberMe">
+                                <span class="custom-checkbox"></span>
+                                <span>Lembrar de mim</span>
+                            </label>
+                            <a href="#" class="forgot-link" onclick="showForgotPassword(event)">Esqueceu a senha?</a>
+                        </div>
+
+                        <button type="submit" class="btn-login" id="btnLogin">
+                            <span class="btn-text">Entrar</span>
+                            <span class="btn-loader" style="display:none"><i class="fas fa-spinner fa-spin"></i></span>
+                        </button>
+                    </form>
+
+                    <div class="login-footer">
+                        <p>Não tem uma conta? <a href="#" onclick="showRegister(event)">Criar conta grátis</a></p>
+                    </div>
+                </div>
+
+                <!-- Register State -->
+                <div class="login-state" id="registerState" style="display:none">
+                    <div class="login-card-header">
+                        <h2>Criar sua conta</h2>
+                        <p>Comece a usar o Athos Ads gratuitamente</p>
+                    </div>
+
+                    <div class="social-login-group">
+                        <button class="social-btn google-btn" onclick="loginWithGoogle()">
+                            <svg class="social-icon" viewBox="0 0 24 24" width="20" height="20">
+                                <path fill="#4285F4"
+                                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" />
+                                <path fill="#34A853"
+                                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                                <path fill="#FBBC05"
+                                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                                <path fill="#EA4335"
+                                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                            </svg>
+                            <span>Registrar com Google</span>
+                        </button>
+
+                        <button class="social-btn facebook-btn" onclick="loginWithFacebook()">
+                            <i class="fab fa-facebook-f social-icon-fa"></i>
+                            <span>Registrar com Facebook</span>
+                        </button>
+                    </div>
+
+                    <div class="divider">
+                        <span>ou registre com email</span>
+                    </div>
+
+                    <form class="login-form" id="registerForm" onsubmit="handleRegister(event)">
+                        <div class="input-group">
+                            <label for="regName">Nome completo</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="regName" placeholder="Seu nome" required>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="regEmail">Email</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="regEmail" placeholder="seu@email.com" required
+                                    autocomplete="email">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="regPassword">Senha</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="regPassword" placeholder="Mínimo 8 caracteres" required
+                                    minlength="8">
+                                <button type="button" class="toggle-password" onclick="togglePasswordVisibility(this)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-strength" id="passwordStrength">
+                                <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+                                <span class="strength-text" id="strengthText"></span>
+                            </div>
+                        </div>
+
+                        <label class="checkbox-wrapper terms-checkbox" for="acceptTerms">
+                            <input type="checkbox" id="acceptTerms" required>
+                            <span class="custom-checkbox"></span>
+                            <span>Concordo com os <a href="#">Termos de Uso</a> e <a href="#">Política de Privacidade</a></span>
+                        </label>
+
+                        <button type="submit" class="btn-login">
+                            <span class="btn-text">Criar Conta</span>
+                            <span class="btn-loader" style="display:none"><i class="fas fa-spinner fa-spin"></i></span>
+                        </button>
+                    </form>
+
+                    <div class="login-footer">
+                        <p>Já tem uma conta? <a href="#" onclick="showLogin(event)">Fazer login</a></p>
+                    </div>
+                </div>
+
+                <!-- Forgot Password State -->
+                <div class="login-state" id="forgotState" style="display:none">
+                    <div class="login-card-header">
+                        <button class="back-btn" onclick="showLogin(event)"><i class="fas fa-arrow-left"></i></button>
+                        <h2>Recuperar senha</h2>
+                        <p>Enviaremos um link de redefinição para seu email</p>
+                    </div>
+
+                    <form class="login-form" id="forgotForm" onsubmit="handleForgotPassword(event)">
+                        <div class="input-group">
+                            <label for="forgotEmail">Email</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="forgotEmail" placeholder="seu@email.com" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-login">
+                            <span class="btn-text">Enviar Link</span>
+                            <span class="btn-loader" style="display:none"><i class="fas fa-spinner fa-spin"></i></span>
+                        </button>
+                    </form>
+
+                    <div class="login-footer">
+                        <p>Lembrou a senha? <a href="#" onclick="showLogin(event)">Voltar ao login</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Badge -->
+            <div class="security-badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>Conexão segura • Seus dados estão protegidos com criptografia SSL</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-icon"><i class="fas fa-check-circle"></i></div>
+        <div class="toast-content">
+            <strong id="toastTitle">Sucesso</strong>
+            <span id="toastMessage">Login realizado com sucesso!</span>
+        </div>
+        <button class="toast-close" onclick="hideToast()"><i class="fas fa-times"></i></button>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+
+</html>
